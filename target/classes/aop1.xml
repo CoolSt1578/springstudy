@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <context:component-scan base-package="com.study.aop" />
+
+    <bean id="timeHandler" class="com.study.aop.TimeHandler" />
+    <bean id="logHandler" class="com.study.aop.LogHandler" />
+
+    <!-- order 可以排序 -->
+    <aop:config>
+        <aop:aspect id="time" ref="timeHandler" order="2">
+            <aop:pointcut id="addAllMethod" expression="execution(* com.study.aop.HelloWorld.*(..))" />
+            <aop:before method="printTime" pointcut-ref="addAllMethod" />
+            <aop:after method="printTime" pointcut-ref="addAllMethod" />
+        </aop:aspect>
+
+        <aop:aspect id="log" ref="logHandler" order="1">
+            <aop:pointcut id="logAllMethod" expression="execution(* com.study.aop.HelloWorld.*(..))" />
+            <aop:before method="logBefore" pointcut-ref="logAllMethod" />
+            <aop:after method="logAfter" pointcut-ref="logAllMethod" />
+        </aop:aspect>
+    </aop:config>
+
+</beans>
