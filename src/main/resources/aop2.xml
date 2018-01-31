@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 定义被代理者 -->
+    <bean id="me" class="com.study.aop2.Me"></bean>
+
+    <!-- 定义通知内容，切入点附近需要做的事 -->
+    <bean id="sleepHelper" class="com.study.aop2.SleepHelper"></bean>
+
+    <!-- 定义切入点位置 -->
+    <bean id="sleepPointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+        <property name="pattern" value=".*sleep"></property>
+    </bean>
+
+    <!-- 使切入点和通知相关联，完成切面配置 -->
+    <bean id="sleepHelperAdvisor" class="org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor">
+        <property name="advice" ref="sleepHelper"></property>
+        <property name="pointcut" ref="sleepPointcut"></property>
+    </bean>
+
+    <!-- 设置代理 -->
+    <bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!-- 代理的对象，又睡觉能力 -->
+        <property name="target" ref="me"></property>
+        <!-- 使用切面 -->
+        <property name="interceptorNames" value="sleepHelperAdvisor"></property>
+        <!-- 代理睡觉接口 -->
+        <property name="proxyInterfaces" value="com.study.aop2.Sleepable"></property>
+    </bean>
+
+    <!-- 把上面的代理配置换成这一行，使用自动匹配功能，切面会自动匹配符合切入点的bean，会被自动代理
+        <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" />
+    -->
+</beans>
