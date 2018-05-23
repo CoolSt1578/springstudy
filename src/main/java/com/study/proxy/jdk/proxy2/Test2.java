@@ -24,6 +24,7 @@ public class Test2 {
          * 3.然后调用newInstance()创建实例
          */
         Object object = Proxy.newProxyInstance(classLoader, interfaces, invocationHandler);
+        //只能转换为目标类实现的接口，以为jdk动态代理针对的是接口，内部实现也是通过获取目标类实现的接口进行动态生成字节码
         Vehicle vehicle = (Vehicle) object;
         vehicle.drive();
         Rechargable rechargable = (Rechargable) object;
