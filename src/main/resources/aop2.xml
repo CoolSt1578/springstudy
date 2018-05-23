@@ -22,7 +22,7 @@
 
     <!-- 设置代理 -->
     <bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
-        <!-- 代理的对象，又睡觉能力 -->
+        <!-- 代理的对象，有睡觉能力 -->
         <property name="target" ref="me"></property>
         <!-- 使用切面 -->
         <property name="interceptorNames" value="sleepHelperAdvisor"></property>
