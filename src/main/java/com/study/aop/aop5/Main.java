@@ -33,6 +33,8 @@ public class Main {
         proxyFactoryBean.setProxyTargetClass(false);
         //通过ProxyFactoryBean生成Proxy对象
         TicketService ticketService = (TicketService) proxyFactoryBean.getObject();
+        ticketService.inquire();
         ticketService.sellTicket();
+        ticketService.withdraw();
     }
 }

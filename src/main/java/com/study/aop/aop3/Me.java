@@ -8,7 +8,9 @@ package com.study.aop.aop3;
  */
 public class Me implements Sleepable {
 
+    @Override
     public void sleep() {
         System.out.println("睡觉！");
+        throw new RuntimeException("exception");
     }
 }

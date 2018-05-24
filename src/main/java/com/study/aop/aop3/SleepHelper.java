@@ -2,6 +2,7 @@ package com.study.aop.aop3;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -26,9 +27,11 @@ public class SleepHelper {
 
     @After(value = "sleeppoint()")
     public void afterSleep(){
+
         System.out.println("起床前要穿衣服");
     }
 
+    @AfterThrowing(value = "sleeppoint()", throwing = "ex")
     public void doThrowing(JoinPoint joinPoint, Throwable ex){
         System.out.println("doThrowing::method " + joinPoint.getTarget().getClass().getName() +
         "." + joinPoint.getSignature().getName() + " throw exception");
