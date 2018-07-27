@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="news" class="com.study.spring.ioc.ioc2.lookup_method.News" scope="prototype"/>
+
+    <bean id="newsProvider" class="com.study.spring.ioc.ioc2.lookup_method.NewsProvider">
+        <lookup-method name="getNews" bean="news" />
+    </bean>
+
+</beans>
