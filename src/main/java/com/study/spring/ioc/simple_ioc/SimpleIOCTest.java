@@ -12,6 +12,7 @@ public class SimpleIOCTest {
         try {
             String location = SimpleIOC.class.getClassLoader().getResource("simpleioc.xml").getFile();
             System.out.println(location);
+            
             SimpleIOC ioc = new SimpleIOC(location);
             Wheel wheel = (Wheel) ioc.getBean("wheel");
             Car car = (Car) ioc.getBean("car");
