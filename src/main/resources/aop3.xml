@@ -7,8 +7,8 @@
     <aop:aspectj-autoproxy />
 
     <!-- 定义被代理者 -->
-    <bean id="me" class="com.study.aop.aop3.Me"></bean>
+    <bean id="me" class="com.study.spring.aop.aop3.Me"></bean>
     <!-- 定义通知内容，也就是切入点执行前后需要做的事情 -->
-    <bean id="sleepHelper" class="com.study.aop.aop3.SleepHelper"></bean>
+    <bean id="sleepHelper" class="com.study.spring.aop.aop3.SleepHelper"></bean>
 
 </beans>

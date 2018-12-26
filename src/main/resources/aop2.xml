@@ -4,10 +4,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- 定义被代理者 -->
-    <bean id="me" class="com.study.aop.aop2.Me"></bean>
+    <bean id="me" class="com.study.spring.aop.aop2.Me"></bean>
 
     <!-- 定义通知内容，切入点附近需要做的事 -->
-    <bean id="sleepHelper" class="com.study.aop.aop2.SleepHelper"></bean>
+    <bean id="sleepHelper" class="com.study.spring.aop.aop2.SleepHelper"></bean>
 
     <!-- 定义切入点位置 -->
     <bean id="sleepPointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut">
@@ -27,7 +27,7 @@
         <!-- 使用切面 -->
         <property name="interceptorNames" value="sleepHelperAdvisor"></property>
         <!-- 代理睡觉接口 -->
-        <property name="proxyInterfaces" value="com.study.aop.aop2.Sleepable"></property>
+        <property name="proxyInterfaces" value="com.study.spring.aop.aop2.Sleepable"></property>
     </bean>
 
     <!-- 把上面的代理配置换成这一行，使用自动匹配功能，切面会自动匹配符合切入点的bean，会被自动代理
